@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="UTF-8">
+<title>Birthday ❤️</title>
+
+<style>
+  body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #startBtn {
+    padding: 22px 44px;
+    font-size: 26px;
+    border: none;
+    border-radius: 50px;
+    background: pink;
+    cursor: pointer;
+    z-index: 10;
+    animation: pulse 2.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 rgba(255,192,203,0.6); }
+    50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(255,192,203,0.8); }
+    100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,192,203,0.6); }
+  }
+
+  #content {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .slideshow {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+  }
+
+  .slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    animation: fade 20s infinite;
+  }
+
+  .slideshow img:nth-child(1) { animation-delay: 0s; }
+  .slideshow img:nth-child(2) { animation-delay: 5s; }
+  .slideshow img:nth-child(3) { animation-delay: 10s; }
+  .slideshow img:nth-child(4) { animation-delay: 15s; }
+
+  @keyframes fade {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    30% { opacity: 1; }
+    40% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.75));
+    z-index: -2;
+  }
+
+  #message {
+    position: relative;
+    z-index: 5;
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .line {
+    opacity: 0;
+    font-size: clamp(22px, 5vw, 28px);
+    margin: 16px 0;
+    animation:
+      appear 2.5s forwards,
+      glow 6s ease-in-out infinite;
+  }
+
+  .name {
+    font-size: clamp(30px, 7vw, 42px);
+    margin-top: 40px;
+    opacity: 0;
+    animation:
+      nameReveal 4s forwards,
+      namePulse 4s ease-in-out infinite;
+    animation-delay: 18s, 22s;
+  }
+
+  .signature {
+    font-size: clamp(16px, 4vw, 20px);
+    margin-top: 10px;
+    opacity: 0;
+    animation: appear 3s forwards;
+    animation-delay: 24s;
+    color: rgba(255,255,255,0.8);
+  }
+
+  @keyframes appear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes glow {
+    0% {
+      text-shadow: 0 0 8px rgba(255,255,255,0.3),
+                   0 0 16px rgba(255,192,203,0.3);
+    }
+    50% {
+      text-shadow: 0 0 16px rgba(255,255,255,0.7),
+                   0 0 32px rgba(255,192,203,0.7);
+    }
+    100% {
+      text-shadow: 0 0 8px rgba(255,255,255,0.3),
+                   0 0 16px rgba(255,192,203,0.3);
+    }
+  }
+
+  @keyframes nameReveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+      text-shadow: none;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      text-shadow:
+        0 0 20px rgba(255,192,203,0.8),
+        0 0 40px rgba(255,105,180,0.9),
+        0 0 60px rgba(255,20,147,1);
+    }
+  }
+
+  @keyframes namePulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .heart {
+    position: fixed;
+    font-size: 18px;
+    animation: floatUp 10s linear infinite;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(100vh); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<button id="startBtn">Druk my ❤️</button>
+
+<div id="content">
+
+  <div class="slideshow">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+  </div>
+
+  <div class="overlay"></div>
+
+  <audio id="song" src="song.mp3" loop></audio>
+
+  <div id="message">
+    <div class="line" style="animation-delay:1s;">My liefste Mom,</div>
+    <div class="line" style="animation-delay:4s;">Baie geluk met Mom se verjaarsdag!</div>
+    <div class="line" style="animation-delay:7s;">21 het nog nooit so goed gelyk nie.</div>
+    <div class="line" style="animation-delay:10s;">Ek is ongelooflik baie lief vir Mamma!</div>
+    <div class="line" style="animation-delay:13s;">Ek sou nie vir ’n beter Mamma kon vra nie.</div>
+    <div class="line" style="animation-delay:16s;">Baie dankie vir al Mamma se onvoorwaardelike liefde en omgee.</div>
+    <div class="line" style="animation-delay:19s;">Ek hoop Mamma het ’n baie lekker daggie!</div>
+
+    <div class="name">Mom 💖</div>
+    <div class="signature">Baie liefde<br>Mamma se hongerste kind</div>
+  </div>
+
+</div>
+
+<script>
+  const btn = document.getElementById("startBtn");
+  const content = document.getElementById("content");
+  const song = document.getElementById("song");
+
+  btn.onclick = () => {
+    if (navigator.vibrate) {
+      navigator.vibrate([200, 100, 200]);
+    }
+
+    btn.style.display = "none";
+    content.style.display = "block";
+
+    song.play().catch(() => {
+      document.body.addEventListener("click", () => song.play(), { once: true });
+    });
+
+    for (let i = 0; i < 25; i++) {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.innerHTML = "❤️";
+      h.style.left = Math.random() * 100 + "vw";
+      h.style.animationDelay = Math.random() * 10 + "s";
+      document.body.appendChild(h);
+    }
+  };
+</script>
+
+</body>
+</html>
